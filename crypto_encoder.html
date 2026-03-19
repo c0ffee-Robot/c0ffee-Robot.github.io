@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ものおき（仮）</title>
+  <link rel="stylesheet" href="css/base_style.css">
+</head>
+
+<body>
+  <header>
+    <h1 class="title">ものおき（仮）</h1>
+  </header>
+  <div class="page_info">
+    <h2 class="title">暗号化ツール（AES / 3DES）</h1>
+    <p class="description">文字列を暗号化するツール。お試し用。</p>
+  </div>
+
+  <main class="container">
+    <div class="label">元の文字列</div>
+    <textarea id="plain" rows="4"></textarea>
+
+    <div class="label">鍵（Key）</div>
+    <input id="key" type="text" placeholder="任意のキーを入力">
+
+    <div class="label">暗号方式</div>
+    <select id="method">
+      <option value="AES">AES</option>
+      <option value="3DES">3DES</option>
+    </select>
+
+    <button id="encryptBtn">暗号化する</button>
+
+    <div class="label">暗号化結果（Base64）</div>
+    <textarea id="cipher" rows="3" readonly></textarea>
+  </main>
+
+  <script>
+    document.getElementById("encryptBtn").addEventListener("click", () => {
+      const text = document.getElementById("plain").value;
+      const key = document.getElementById("key").value;
+      const method = document.getElementById("method").value;
+
+      if (!text || !key) {
+        alert("文字列とキーを入力してください");
+        return;
+      }
+
+      let encrypted;
+
+      if (method === "AES") {
+        encrypted = CryptoJS.AES.encrypt(text, key).toString();
+      } else if (method === "3DES") {
+        encrypted = CryptoJS.TripleDES.encrypt(text, key).toString();
+      }
+
+      document.getElementById("cipher").value = encrypted;
+    });
+  </script>
+
+</body>
+
+</html>

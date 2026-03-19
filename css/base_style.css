@@ -1,0 +1,92 @@
+/* 全体 */
+body {
+  margin: 0;
+  font-family: "Meiryo";
+  font-size: 14px;
+  background: #efefef;
+}
+.container {
+  max-width: 1100px;
+  margin: 48px auto;
+  padding: 0 48px;
+}
+
+/* ページの見出し */
+header {
+  background: #c0ffee;
+  color: #555;
+  padding: 4px 32px;
+}
+header .title {
+  max-width: 1100px;
+  margin: 16px auto;
+}
+.page_info {
+  margin: 24px auto;
+}
+.page_info .title {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.page_info .description {
+  max-width: 1100px;
+  margin: 16px auto;
+}
+
+/* 入力欄 */
+input {
+  padding: 4px 8px;
+  border: 1px solid #777;
+  border-radius: 8px;
+}
+button {
+  padding: 4px 8px;
+  border: 1px solid #777;
+  border-radius: 8px;
+  background-color: #c0ffee;
+}
+
+/* メニュー（アコーディオン） */
+.menu .item {
+  border-radius: 8px;
+  box-shadow: 4px 6px 4px rgba(0,0,0,0.2);
+  background-color: #ccc;
+}
+.menu .item.appear {
+  background-color: #c0ffee;
+}
+.menu .item.appear dd {
+  background-color: #c0ffee;
+  display: block;
+  animation: 0.3s fadeIn;
+}
+.menu dl {
+  margin: 8px;
+}
+.menu dt {
+  padding: 8px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.menu dt::before {
+  content: '・';
+}
+.menu dd {
+  padding: 8px;
+  margin: 0;
+  display: none;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
