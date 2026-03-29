@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODOリスト</title>
+    <link rel="stylesheet" href="css/base_style.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="title">ものおき（仮）</h1>
+    </header>
+    <div class="page-info">
+        <h2 class="title">TODOリスト</h1>
+            <p class="description">
+                ちょっとした内容をメモとして残せるTODOリストです。<br>
+                メモした内容はブラウザ内に保存されるのでこの画面を閉じても、次に画面を開いたときに続けて使えます。
+            </p>
+    </div>
+    <div class="container">
+        <input type="text" id="todoInput" placeholder="タスクを入力">
+        <button id="addTodo">追加</button>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script src="js/todo_list.js"></script>
+</body>
+
+</html>
