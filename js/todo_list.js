@@ -62,14 +62,14 @@
         checked: checkbox.checked
       });
     });
-    localStorage.setItem('c0ffee-Robot_todo', JSON.stringify(todos));
+    localStorage.setItem('raccoondog-craft_todo', JSON.stringify(todos));
   }
 
   // --------------------------------------------------
   // ローカルストレージから画面表示リスト作成
   // --------------------------------------------------
   function loadTodos() {
-    const data = JSON.parse(localStorage.getItem('c0ffee-Robot_todo')) || [];
+    const data = JSON.parse(localStorage.getItem('raccoondog-craft_todo')) || [];
     data.forEach(item => {
       createTodoItem(item.text, item.checked);
     });
