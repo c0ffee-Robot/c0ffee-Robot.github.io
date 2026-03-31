@@ -19,8 +19,6 @@
   // Todoリストの行を作成して追加
   // --------------------------------------------------
   function createTodoItem(text, checked) {
-    console.log(text);
-    console.log(checked);
     // チェックボックス
     const todoCheck = document.createElement('input');
     todoCheck.type = 'checkbox';
@@ -34,7 +32,8 @@
     todoText.textContent = text;
     // 削除ボタン
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'delete';
+    deleteButton.classList.add('todo-delete');
+    deleteButton.textContent = 'Delete';
     // 削除ボタンが押されたら対象のliタグを削除する
     deleteButton.addEventListener('click', () => {
       todoList.removeChild(li);

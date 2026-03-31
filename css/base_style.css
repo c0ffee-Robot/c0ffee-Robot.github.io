@@ -67,9 +67,7 @@ button {
   cursor: pointer;
   user-select: none;
   position: relative;
-}
-.menu dt::before {
-  content: '・';
+  font-weight: bold;
 }
 .menu dd {
   padding: 8px;
