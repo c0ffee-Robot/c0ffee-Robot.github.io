@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>暗号化ツール（AES / 3DES）</title>
   <link rel="stylesheet" href="css/base_style.css">
+  <link rel="stylesheet" href="css/crypto_encoder.css">
 </head>
 
 <body>
@@ -14,50 +15,56 @@
   </header>
   <div class="page-info">
     <h2 class="title">暗号化ツール（AES / 3DES）</h1>
-    <p class="description">文字列を暗号化するツール。お試し用。</p>
+      <p class="description">文字列を暗号化するツール。お試し用。<br>
+        <b>※とりあえず動くようにしているけど、検証や入力値の制限処理などはこれから…</b>
+      </p>
+
   </div>
 
   <main class="container">
-    <div class="label">元の文字列</div>
-    <textarea id="plain" rows="4"></textarea>
+    <div class="input-form">
+      <label class="label" for="text">元の文字列：</label>
+      <span class="value">
+        <textarea id="text" rows="4"></textarea>
+      </span>
+    </div>
+    <div class="input-form">
+      <label class="label" for="key">キー（16進数）：</label>
+      <span class="value">
+        <input id="key" type="text" placeholder="例：1234567890abcdef"><br>
+        <small>※1～fの16進数形式で入力してください。</small>
+      </span>
+    </div>
+    <div class="input-form">
+      <label class="label" for="iv">初期化ベクトル：</label>
+      <span class="value">
+        <input id="iv" type="text" placeholder="例：1234567890abcdef"><br>
+        <small>※1～fの16進数形式で入力してください。</small>
+      </span>
+    </div>
+    <div class="input-form">
+      <label class="label" for="algo">暗号方式：</label>
+      <span class="value">
+        <select id="algo">
+          <option value="AES">AES-CBC</option>
+          <option value="3DES">3DES-CBC</option>
+        </select>
+      </span>
+    </div>
 
-    <div class="label">鍵（Key）</div>
-    <input id="key" type="text" placeholder="任意のキーを入力">
+    <div class="button-area">
+      <button id="encryptBtn">暗号化を実行</button>
+      <button id="clearBtn">入力をクリア</button>
+    </div>
 
-    <div class="label">暗号方式</div>
-    <select id="method">
-      <option value="AES">AES</option>
-      <option value="3DES">3DES</option>
-    </select>
-
-    <button id="encryptBtn">暗号化する</button>
-
-    <div class="label">暗号化結果（Base64）</div>
-    <textarea id="cipher" rows="3" readonly></textarea>
+    <div class="result">
+      <h4>暗号化結果（Base64）</h4>
+      <textarea id="cipher" rows="3" readonly></textarea>
+    </div>
   </main>
 
-  <script>
-    document.getElementById("encryptBtn").addEventListener("click", () => {
-      const text = document.getElementById("plain").value;
-      const key = document.getElementById("key").value;
-      const method = document.getElementById("method").value;
-
-      if (!text || !key) {
-        alert("文字列とキーを入力してください");
-        return;
-      }
-
-      let encrypted;
-
-      if (method === "AES") {
-        encrypted = CryptoJS.AES.encrypt(text, key).toString();
-      } else if (method === "3DES") {
-        encrypted = CryptoJS.TripleDES.encrypt(text, key).toString();
-      }
-
-      document.getElementById("cipher").value = encrypted;
-    });
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="js/crypto_encoder.js"></script>
 
 </body>
 
