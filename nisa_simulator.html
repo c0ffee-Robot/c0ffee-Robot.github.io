@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NISA積立シミュレーション</title>
+  <title>新NISA（積立枠）向け　複利計算シミュレータ</title>
   <link rel="stylesheet" href="css/base_style.css">
   <link rel="stylesheet" href="css/nisa_simulation.css">
 </head>
@@ -14,32 +14,32 @@
     <h1 class="title"><a href="index.html">ものおき（仮）</a></h1>
   </header>
   <div class="page-info">
-    <h2 class="title">NISA 積立シミュレーション</h1>
-    <p class="description">
-      新NISA向けに積立投資の評価額がどんな感じに増えていくかを計算します。
-    </p>
+    <h2 class="title">新NISA（積立枠）向け　複利計算シミュレータ</h1>
+      <p class="description">
+        新NISAの積立枠がどんな感じに増えていくかを計算します。<br>
+        積立枠の上限は1080万とし、上限に達した場合は追加の積み立てはせずに想定利回りだけで運用する計算にしています。
+      </p>
   </div>
 
   <main class="container">
-    <div>
-      <label>ひと月の積立額：
-        <input type="number" id="monthly" value="30000">
-      </label><br><br>
-
-      <label>開始年月：
-        <input type="month" id="startMonth" value="2025-01">
-      </label><br><br>
-
-      <label>想定年間利回り（%）：
-        <input type="number" id="annualRate" value="5" step="0.1">
-      </label><br><br>
-
-      <label>シミュレーション年数：
-        <input type="number" id="years" value="20">
-      </label><br><br>
-
-      <button id="simulate">計算する</button>
+    <div class="input-form">
+      <label for="monthly">ひと月の積立額：</label>
+      <input id="monthly" type="number" value="30000">
     </div>
+    <div class="input-form">
+      <label for="startMonth">開始年月：</label>
+      <input id="startMonth" type="month" value="2025-01">
+    </div>
+    <div class="input-form">
+      <label for="annualRate">想定年間利回り（%）：</label>
+      <input id="annualRate" type="number" value="5" step="0.1">
+    </div>
+    <div class="input-form">
+      <label for="years">シミュレーション年数：</label>
+      <input id="years" type="number" value="20">
+    </div>
+
+    <button id="simulate">計算する</button>
 
     <table id="resultTable">
       <thead>
