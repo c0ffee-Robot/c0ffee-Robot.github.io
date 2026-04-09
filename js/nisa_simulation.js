@@ -33,12 +33,16 @@
       // 評価額 - 積立総額で利益を更新する
       profit = value - totalInvest;
 
+      // 小数点を切り捨てておく
+      value = Math.floor(value);
+      profit = Math.floor(profit);
+
       const row = document.createElement('tr');
       row.innerHTML = `
       <td>${year}-${String(month).padStart(2, '0')}</td>
       <td>${totalInvest.toLocaleString()}</td>
-      <td>${value.toFixed(0).toLocaleString()}</td>
-      <td>${profit.toFixed(0).toLocaleString()}</td>
+      <td>${value.toLocaleString()}</td>
+      <td>${profit.toLocaleString()}</td>
     `;
       tbody.appendChild(row);
 
