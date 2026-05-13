@@ -17,12 +17,6 @@
   margin-left: 200px;
 }
 
-#resultTable {
-  border-collapse: collapse;
-  margin-top: 40px;
-  margin-left: 200px;
-}
-
 th,
 td {
   border: 1px solid #ccc;

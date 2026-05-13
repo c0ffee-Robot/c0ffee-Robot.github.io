@@ -16,8 +16,10 @@
   <div class="page-info">
     <h2 class="title">新NISA（積立枠）向け　複利計算シミュレータ</h1>
       <p class="description">
-        新NISAの積立枠がどんな感じに増えていくかを計算します。<br>
-        積立枠の上限は1080万とし、上限に達した場合は追加の積み立てはせずに想定利回りだけで運用する計算にしています。
+        新NISAの積立枠がどんな感じに増えていくかを計算するシミュレータです。<br><br>
+        ※積立枠の上限は1080万です。上限に達した場合は追加の積み立てはせずに想定利回りだけで計算します。<br>
+        ※想定年間利回りをもとに月利を計算します。月ごとに複利が発生するものとし、月利は以下の式で計算します。<br>
+        　　月利の計算式：<i>(1 + 想定年間利回り)<sup>1/12</sup> - 1</i>
       </p>
   </div>
 
@@ -34,6 +36,7 @@
       <label for="annualRate">想定年間利回り（%）：</label>
       <input id="annualRate" type="number" value="5" step="0.1">
     </div>
+    
     <div class="input-form">
       <label for="years">シミュレーション年数：</label>
       <input id="years" type="number" value="20">
@@ -41,17 +44,7 @@
 
     <button id="simulate">計算する</button>
 
-    <table id="resultTable">
-      <thead>
-        <tr>
-          <th>年月</th>
-          <th>累計積立額</th>
-          <th>評価額</th>
-          <th>利益</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div id="resultContainer"></div>
   </main>
 
   <script src="js/nisa_simulation.js"></script>

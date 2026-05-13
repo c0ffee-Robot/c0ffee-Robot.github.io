@@ -8,21 +8,28 @@
     const annualRate = Number(document.getElementById('annualRate').value) / 100;
     const years = Number(document.getElementById('years').value);
 
-    // 月単位で計算するので利回りも12分の1にして計算する
+    // 月単位で計算するので月利を計算する
+    // 月ごとの複利があるため、年利を1/12乗した数値を月利とする
     const months = years * 12;
-    const monthlyRate = annualRate / 12;
+    const monthlyRate = Math.pow(1 + annualRate, 1/12) - 1;
 
     const maxInvest = 10800000;
     let totalInvest = 0;
     let profit = 0;
     let value = 0;
+    let prevValue = 0;
 
-    const tbody = document.querySelector('#resultTable tbody');
-    tbody.innerHTML = '';
+    const container = document.getElementById('resultContainer');
+    container.innerHTML = '';
 
     let [year, month] = startMonth.split('-').map(Number);
+    let currentYear = null;
+    let detailsEl = null;
+    let tbody = null;
 
     for (let i = 0; i < months; i++) {
+      // 計算前にひとつ前の金額として保持する
+      prevValue = value;
       // 積立枠の限度額が上限に達した場合は制限する
       totalInvest += monthly;
       if (totalInvest >= maxInvest) {
@@ -36,6 +43,41 @@
       // 小数点を切り捨てておく
       value = Math.floor(value);
       profit = Math.floor(profit);
+
+      // 年が変わったら新しいアコーディオンを作る
+      if (currentYear !== year) {
+        currentYear = year;
+
+        detailsEl = document.createElement('details');
+        detailsEl.style.marginBottom = '10px';
+
+        const summaryEl = document.createElement('summary');
+        summaryEl.textContent = `${year}年　年初の評価額：${prevValue.toLocaleString()}円`;
+        summaryEl.style.cursor = 'pointer';
+        summaryEl.style.fontWeight = 'bold';
+
+        detailsEl.appendChild(summaryEl);
+
+        // 年ごとのテーブル
+        const table = document.createElement('table');
+        table.style.borderCollapse = 'collapse';
+        table.style.marginTop = '10px';
+        table.innerHTML = `
+        <thead>
+          <tr>
+            <th>年月</th>
+            <th>累計積立額</th>
+            <th>評価額</th>
+            <th>利益</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      `;
+        tbody = table.querySelector('tbody');
+
+        detailsEl.appendChild(table);
+        container.appendChild(detailsEl);
+      }
 
       const row = document.createElement('tr');
       row.innerHTML = `
