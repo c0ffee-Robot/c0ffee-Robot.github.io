@@ -57,6 +57,7 @@ button {
   background-color: #ccc;
 }
 .menu .item.appear {
+  animation: 0.3s fadeIn;
   background-color: cornflowerblue;
 }
 .menu .item.appear dd {
